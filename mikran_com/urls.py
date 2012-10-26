@@ -33,13 +33,13 @@ urlpatterns = patterns('',
 )
 
 urlpatterns += patterns('',
-   (r'^accounts/register/$', 'registration.views.register', { 'template_name': 'registration/registration_form.html', 'backend':'mshop.backend.MikranBackend' }),
-   (r'^accounts/password/reset/$', 'django.contrib.auth.views.password_reset', {'template_name': 'registration/password_reset_form.html'}),
-   (r'^accounts/password/reset/confirm/(?P<uidb36>[0-9A-Za-z]{1,13})-(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$', 'django.contrib.auth.views.password_reset_confirm', {'template_name': 'registration/password_reset_confirm.html' }),
-   (r'^accounts/password/reset/done/$', 'django.contrib.auth.views.password_reset_done', {'template_name': 'registration/password_reset_done.html'}),
-   (r'^accounts/password/reset/complete/$', 'django.contrib.auth.views.password_reset_complete', {'template_name': 'registration/password_reset_complete.html'}),
-   (r'^accounts/password/change/$', 'django.contrib.auth.views.password_change', {'template_name': 'registration/password_change_form.html'}),
-   (r'^accounts/password/change/done/$', 'django.contrib.auth.views.password_change_done', {'template_name': 'registration/password_change_done.html'}),
+   (r'^accounts/register/$', 'registration.views.register', { 'template_name': 'auth/registration_form.html', 'backend':'mshop.backend.MikranBackend' }),
+   (r'^accounts/password/reset/$', 'django.contrib.auth.views.password_reset', {'template_name': 'auth/password_reset_form.html'}),
+   (r'^accounts/password/reset/confirm/(?P<uidb36>[0-9A-Za-z]{1,13})-(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$', 'django.contrib.auth.views.password_reset_confirm', {'template_name': 'auth/password_reset_confirm.html' }),
+   (r'^accounts/password/reset/done/$', 'django.contrib.auth.views.password_reset_done', {'template_name': 'auth/password_reset_done.html'}),
+   (r'^accounts/password/reset/complete/$', 'django.contrib.auth.views.password_reset_complete', {'template_name': 'auth/password_reset_complete.html'}),
+   (r'^accounts/password/change/$', 'django.contrib.auth.views.password_change', {'template_name': 'auth/password_change_form.html'}),
+   (r'^accounts/password/change/done/$', 'django.contrib.auth.views.password_change_done', {'template_name': 'auth/password_change_done.html'}),
    (r'^accounts/', include('registration.backends.default.urls')),
 )
 
