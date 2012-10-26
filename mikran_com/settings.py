@@ -21,6 +21,8 @@ VAT_MODIFIER_CLASS = 'mshop.modifiers.VatPerItemTaxModifier'
 CURRENCY_MODIFIER_CLASS = 'mshop.modifiers.CurrencyModifier'
 SHOP_CART_MODIFIERS = [VAT_MODIFIER_CLASS, CURRENCY_MODIFIER_CLASS]
 
+AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.ModelBackend','mshop.backend.EmailAuthBackend',)
+
 gettext = lambda s: s
 LANGUAGES = (
     ('fr', gettext(u'French')),
@@ -472,11 +474,21 @@ INSTALLED_APPS = (
     'currencies',
     'legacy',
     'curr_conv',
+    'registration',
+    #'registration_defaults',
     'debug_toolbar',
     #'multilingual',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )
+
+# Django-registration
+ACCOUNT_ACTIVATION_DAYS = 14 # two-week activation window; you may, of course, use a different value.
+DEFAULT_FROM_EMAIL = "tomasz@mikran.pl"
+EMAIL_HOST = "mikran.pl"
+EMAIL_HOST_USER = "tomasz@mikran.pl"
+EMAIL_HOST_PASSWORD = "ZDanek123"
+#EMAIL_PORT = 587
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
