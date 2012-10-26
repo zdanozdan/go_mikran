@@ -1,6 +1,7 @@
 from django.conf.urls import patterns, include, url 
 from django.conf.urls.i18n import i18n_patterns
 from django.utils.translation import ugettext_lazy as _
+from django.views.generic.simple import direct_to_template
 
 
 from shop import urls as shop_urls # <-- Add this at the top
@@ -25,14 +26,21 @@ urlpatterns = patterns('',
     #Home
     url(r'^$', WelcomeListView.as_view()),
 
-                       #(r'^mshop/', include('mshop.urls')),
-
     #language change
     (r'^i18n/', include('django.conf.urls.i18n')),
     (r'^country/', include('countries.urls')),
     (r'^currency/', include('currencies.urls')),
+)
 
-    #(r'^shop/', include(shop_urls)),
+urlpatterns += patterns('',
+   (r'^accounts/register/$', 'registration.views.register', { 'template_name': 'registration/registration_form.html', 'backend':'mshop.backend.MikranBackend' }),
+   (r'^accounts/password/reset/$', 'django.contrib.auth.views.password_reset', {'template_name': 'registration/password_reset_form.html'}),
+   (r'^accounts/password/reset/confirm/(?P<uidb36>[0-9A-Za-z]{1,13})-(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$', 'django.contrib.auth.views.password_reset_confirm', {'template_name': 'registration/password_reset_confirm.html' }),
+   (r'^accounts/password/reset/done/$', 'django.contrib.auth.views.password_reset_done', {'template_name': 'registration/password_reset_done.html'}),
+   (r'^accounts/password/reset/complete/$', 'django.contrib.auth.views.password_reset_complete', {'template_name': 'registration/password_reset_complete.html'}),
+   (r'^accounts/password/change/$', 'django.contrib.auth.views.password_change', {'template_name': 'registration/password_change_form.html'}),
+   (r'^accounts/password/change/done/$', 'django.contrib.auth.views.password_change_done', {'template_name': 'registration/password_change_done.html'}),
+   (r'^accounts/', include('registration.backends.default.urls')),
 )
 
 urlpatterns += i18n_patterns('',
